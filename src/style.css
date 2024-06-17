@@ -1,0 +1,13 @@
+@font-face {
+    font-family: fira-code;
+    src: url("./FiraCode-Regular.ttf") format("opentype");
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: fira-code;
+}
