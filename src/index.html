@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Todo App</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="main">
@@ -21,5 +20,17 @@
         </div>
         <div class="main-right"></div>
     </div>
+
+    <dialog class="project-modal" method="dialog">
+        <form>
+            <div>
+                <label>Project name:</label>
+                <input id="project-name" type="text" required>
+            </div>
+            <input type="submit">
+            <button class=".close-project-modal" type="button">Close</button>
+        </form>
+    </dialog>
+    <script src="index.js"></script>
 </body>
 </html>
