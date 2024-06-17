@@ -2,6 +2,8 @@
 /tmp
 /out-tsc
 
+brainstorm.md
+
 # Runtime data
 pids
 *.pid
