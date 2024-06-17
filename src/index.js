@@ -13,3 +13,11 @@ newProject.addEventListener('click', () => {
     // show modal
     projectModal.showModal();
 });
+
+// add event listener to close 'new project' form
+const closeNewProject = document.querySelector('.close-project-modal');
+const newProjectForm = document.querySelector('.new-project-form');
+closeNewProject.addEventListener('click', () => {
+    projectModal.close();
+    newProjectForm.reset();
+});
