@@ -5,28 +5,6 @@ let currentProject = 0;
 // this variable keeps track of which project we are viewing so that our program knows which project in our array to modify
 // say we are editing the name of a project for example
 
-// function to clear the page
-const main = document.querySelector('.main');
-function clearPage() {
-    main.innerHTML = '';
-}
-
-// add event listener to 'new project' button
-const newProject = document.querySelector('.add-project');
-const projectModal = document.querySelector('.project-modal');
-newProject.addEventListener('click', () => {
-    // show modal
-    projectModal.showModal();
-});
-
-// add event listener to close 'new project' form
-const closeNewProject = document.querySelector('.close-project-modal');
-const newProjectForm = document.querySelector('.new-project-form');
-closeNewProject.addEventListener('click', () => {
-    projectModal.close();
-    newProjectForm.reset();
-});
-
 class Project {
     constructor(name) {
         this.name = name;
@@ -62,6 +40,32 @@ class Item {
     }
 }
 
-let project = new Project("myproject");
-project.projectName = "new";
-console.log(project.name)
+// function to clear the page
+const main = document.querySelector('.main');
+function clearPage() {
+    main.innerHTML = '';
+}
+
+// add event listener to 'new project' button
+const newProject = document.querySelector('.add-project');
+const projectModal = document.querySelector('.project-modal');
+newProject.addEventListener('click', () => {
+    // show modal
+    projectModal.showModal();
+});
+
+// add event listener to close 'new project' form
+const closeNewProject = document.querySelector('.close-project-modal');
+const newProjectForm = document.querySelector('.new-project-form');
+closeNewProject.addEventListener('click', () => {
+    projectModal.close();
+    newProjectForm.reset();
+});
+
+// add new project to screen and library upon submitting new project name
+newProjectForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // prevent default behaviour
+    const newProjectName = document.getElementById('project-name').value;
+    projectModal.close();
+    console.log(newProjectName);
+});
