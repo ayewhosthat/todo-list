@@ -1,10 +1,13 @@
 import './style.css';
 import Icon from './pencil.svg';
-const editIconDiv = document.querySelector('.project-name-div');
+const editIconDiv = document.querySelector('.name-and-icon');
 const icon = new Image();
 icon.classList.add('edit-icon')
 icon.src = Icon;
 editIconDiv.appendChild(icon);
+const projectHeader = document.createElement('h1');
+projectHeader.classList.add('project-name-heading');
+editIconDiv.appendChild(projectHeader);
 const myProjects = [];
 let currentProject = 0;
 // this variable keeps track of which project we are viewing so that our program knows which project in our array to modify

@@ -20,7 +20,7 @@ body {
 
 .main-right {
     height: 100%;
-    padding: 1%;
+    padding: 2%;
 }
 
 .main-left {
@@ -85,10 +85,47 @@ form {
 
 .header {
     height: 10%;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
 }
 
-.project-name-div {
+.name-and-icon {
     height: 100%;
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 50px 1fr;
+}
+
+img {
+    height: 30px;
+    min-height: 30px;
+    width: 30px;
+    min-width: 30px;
+    align-self: center;
+    justify-self: center;
+}
+
+img:hover {
+    border: 4px solid black;
+    border-radius: 4px;
+}
+
+.name-and-icon > h1 {
+    align-self: center;
+}
+
+.add-todo-item {
+    font-family: fira-code;
+    font-weight: bold;
+    font-size: 1.5rem;
+    height: fit-content;
+    align-self: center;
+    border: 4px solid black;
+    border-radius: 16px;
+    background-color: turquoise;
+    min-width: 15ch;
+}
+
+.add-todo-item:hover {
+    color: white;
+    border: 4px solid white;
 }
