@@ -1,5 +1,10 @@
 import './style.css';
 
+const myProjects = [];
+let currentProject = 0;
+// this variable keeps track of which project we are viewing so that our program knows which project in our array to modify
+// say we are editing the name of a project for example
+
 // function to clear the page
 const main = document.querySelector('.main');
 function clearPage() {
@@ -21,3 +26,42 @@ closeNewProject.addEventListener('click', () => {
     projectModal.close();
     newProjectForm.reset();
 });
+
+class Project {
+    constructor(name) {
+        this.name = name;
+    }
+    set projectName(newName) {
+        this.name = newName;
+    }
+}
+
+// class for a todo item
+class Item {
+    constructor(title, description, priority, deadline, notes) {
+        this.title = title;
+        this.description = description;
+        this.priority = priority;
+        this.deadline = deadline;
+        this.notes = notes;
+    }
+    set itemTitle(newTitle) {
+        this.title = newTitle;
+    }
+    set itemDescription(newDes) {
+        this.description = newDes;
+    }
+    set itemPriority(newPriority) {
+        this.priority = newPriority;
+    }
+    set itemDeadline(newDeadline) {
+        this.deadline = newDeadline;
+    }
+    set itemNotes(newNote) {
+        this.notes = newNote;
+    }
+}
+
+let project = new Project("myproject");
+project.projectName = "new";
+console.log(project.name)
