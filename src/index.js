@@ -1,5 +1,10 @@
 import './style.css';
-
+import Icon from './pencil.svg';
+const editIconDiv = document.querySelector('.project-name-div');
+const icon = new Image();
+icon.classList.add('edit-icon')
+icon.src = Icon;
+editIconDiv.appendChild(icon);
 const myProjects = [];
 let currentProject = 0;
 // this variable keeps track of which project we are viewing so that our program knows which project in our array to modify
@@ -9,7 +14,6 @@ const projectNameHeading = document.querySelector('.project-name-heading')
 function loadProjectName(projectName) {
     projectNameHeading.textContent = projectName;
 }
-loadProjectName("My First Project");
 
 class Project {
     constructor(name) {
@@ -89,3 +93,9 @@ newProjectForm.addEventListener('submit', (e) => {
     myProjects.push(proj);
     addProjectToScreen(newProjectName);
 });
+
+// add 'default' project
+const myFirstProject = new Project('My First Project');
+myProjects.push(myFirstProject);
+addProjectToScreen(myFirstProject.name);
+loadProjectName(myFirstProject.name);
