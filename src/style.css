@@ -57,7 +57,12 @@ body {
 
 .projects-list {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+li:hover {
+    cursor: pointer;
 }
 
 dialog {

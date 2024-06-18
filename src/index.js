@@ -62,10 +62,21 @@ closeNewProject.addEventListener('click', () => {
     newProjectForm.reset();
 });
 
+// function to add new project to screen under 'My Projects' section
+function addProjectToScreen(projectName) {
+    const projectList = document.querySelector('.projects-list');
+    const entry = document.createElement('li');
+    entry.textContent = projectName;
+    projectList.appendChild(entry);
+};
+
 // add new project to screen and library upon submitting new project name
 newProjectForm.addEventListener('submit', (e) => {
     e.preventDefault(); // prevent default behaviour
     const newProjectName = document.getElementById('project-name').value;
+    newProjectForm.reset();
     projectModal.close();
-    console.log(newProjectName);
+    let proj = new Project(newProjectName);
+    myProjects.push(proj);
+    addProjectToScreen(newProjectName);
 });
