@@ -5,6 +5,12 @@ let currentProject = 0;
 // this variable keeps track of which project we are viewing so that our program knows which project in our array to modify
 // say we are editing the name of a project for example
 
+const projectNameHeading = document.querySelector('.project-name-heading')
+function loadProjectName(projectName) {
+    projectNameHeading.textContent = projectName;
+}
+loadProjectName("My First Project");
+
 class Project {
     constructor(name) {
         this.name = name;
@@ -68,9 +74,12 @@ function addProjectToScreen(projectName) {
     const entry = document.createElement('li');
     entry.textContent = projectName;
     projectList.appendChild(entry);
+    entry.addEventListener('click', () => {
+        loadProjectName(projectName);
+    });
 };
 
-// add new project to screen and library upon submitting new project name
+// add new project to library upon submitting new project name
 newProjectForm.addEventListener('submit', (e) => {
     e.preventDefault(); // prevent default behaviour
     const newProjectName = document.getElementById('project-name').value;
