@@ -80,6 +80,7 @@ function addProjectToScreen(projectName) {
     const projectList = document.querySelector('.projects-list');
     const entry = document.createElement('li');
     entry.textContent = projectName;
+    entry.classList.add(projectName.replace(/\W/g, '')); // for reference later on when we change the project name
     projectList.appendChild(entry);
     entry.addEventListener('click', () => {
         loadProjectName(projectName);
@@ -102,3 +103,33 @@ const myFirstProject = new Project('My First Project');
 myProjects.push(myFirstProject);
 addProjectToScreen(myFirstProject.name);
 loadProjectName(myFirstProject.name);
+
+// show modal to rename project
+const renameProject = document.querySelector('.rename-project');
+const renameButton = document.querySelector('.edit-icon');
+renameButton.addEventListener('click', () => {
+    renameProject.showModal();
+});
+
+// add event listeners to close/submit the rename project form
+const closeRename = document.getElementById('close-rename');
+const renameForm = document.getElementById('rename-form');
+closeRename.addEventListener('click', () => {
+    renameForm.reset();
+    renameProject.close()
+});
+
+renameForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let searchID = document.querySelector('.project-name-heading').textContent.replace(/\W/g, '');
+    const projectListItem = document.querySelector(`.${searchID}`);
+    // call function to set the name of the project to new value
+    const newProjectName = document.getElementById('submit-rename-form').value.replace(/\W/g, '')
+    projectListItem.textContent = newProjectName;
+    // update the class of the original item
+    projectListItem.classList.remove(searchID);
+    projectListItem.classList.add(newProjectName);
+    document.querySelector('.project-name-heading').textContent = newProjectName;
+    renameForm.reset();
+    renameProject.close();
+});
