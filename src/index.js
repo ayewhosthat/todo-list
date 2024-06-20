@@ -60,7 +60,7 @@ class Item {
 }
 
 // function to clear the page
-const main = document.querySelector('.main');
+const main = document.querySelector('.item-section');
 function clearPage() {
     main.innerHTML = '';
 }
@@ -91,12 +91,18 @@ function addProjectToScreen(projectName) {
     projectList.appendChild(entry);
     entry.addEventListener('click', () => {
         loadProjectName(projectName);
-        let curr = Number.parseInt(entry.getAttribute('id'));
+        clearPage();
+        const curr = Number.parseInt(entry.getAttribute('id'));
         currentProject = curr;
+        const project = myProjects[currentProject];
+        for (let i = 0; i < project.todoitems.length; i++) {
+            const card = project.todoitems[i];
+            addCardToScreen(card);
+        };
     });
 };
 
-// add new project to library upon submitting new project name
+// add new project to library upon submitting new project
 newProjectForm.addEventListener('submit', (e) => {
     e.preventDefault(); // prevent default behaviour
     const newProjectName = document.getElementById('project-name').value;
@@ -162,12 +168,17 @@ closeNewItem.addEventListener('click', () => {
 function addCardToScreen(item) {
     // create the card to display on the screen
     const card = document.createElement('div');
+    card.classList.add('item-card')
     const title = document.createElement('h2');
     title.textContent = item.title;
-    const dueDate = document.createElement('p')
-    dueDate.textContent = item.deadline;
+    const dueDate = document.createElement('p');
+    dueDate.textContent = `Deadline: ${item.deadline}`;
+    const priority = document.createElement('p');
+    priority.textContent = `Priority: ${item.priority}`;
+    priority.setAttribute('id', `${item.priority}`);
     card.appendChild(title);
     card.appendChild(dueDate);
+    card.appendChild(priority);
     document.querySelector('.item-section').appendChild(card);
 }
 
@@ -176,8 +187,6 @@ addTodoForm.addEventListener('submit', (e) => {
     const name = document.getElementById('item-name').value;
     const description = document.getElementById('item-description').value;
     const deadline = document.getElementById('item-deadline').value;
-    console.log(deadline);
-    console.log(typeof deadline);
     const priority = document.querySelector('#priority:checked').value
     const notes = document.getElementById('item-notes').value;
     addTodoForm.reset();
@@ -185,7 +194,7 @@ addTodoForm.addEventListener('submit', (e) => {
     // create new todo item
     const newItem = new Item(name, description, priority, deadline, notes);
     // get current project and push new item
-    const current = myProjects.at(currentProject);
+    const current = myProjects[currentProject];
     current.addTodoItem(newItem);
     addCardToScreen(newItem);
 });
