@@ -90,6 +90,8 @@ function addProjectToScreen(projectName) {
     projectList.appendChild(entry);
     entry.addEventListener('click', () => {
         loadProjectName(projectName);
+        currentProject = Number.parseInt(entry.getAttribute('id'));
+        console.log(currentProject);
     });
 };
 
