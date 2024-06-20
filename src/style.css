@@ -143,3 +143,28 @@ img:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
+.item-card {
+    display: grid;
+    border: 4px solid black;
+    display: inline-block;
+    border-radius: 4px;
+    width: 250px;
+    padding: 8px;
+}
+
+#low {
+    color: green;
+}
+
+#moderate {
+    color: orange;
+}
+
+#high {
+    color: red;
+}
+
+#low, #moderate, #high {
+    font-weight: bold;
+}
