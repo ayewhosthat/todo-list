@@ -16,6 +16,7 @@ let currentProject = 0;
 const projectNameHeading = document.querySelector('.project-name-heading')
 function loadProjectName(projectName) {
     projectNameHeading.textContent = projectName;
+    projectNameHeading.setAttribute('id', projectName.replace(/\W/g, '').replaceAll(' ', ''));
 }
 
 class Project {
@@ -84,7 +85,7 @@ function addProjectToScreen(projectName) {
     const projectList = document.querySelector('.projects-list');
     const entry = document.createElement('li');
     entry.textContent = projectName;
-    entry.classList.add(projectName.replace(/\W/g, '')); // for reference later on when we change the project name
+    entry.classList.add(projectName.replace(/\W/g, '').replaceAll(' ', '')); // for reference later on when we change the project name
     projectList.appendChild(entry);
     entry.addEventListener('click', () => {
         loadProjectName(projectName);
@@ -125,15 +126,16 @@ closeRename.addEventListener('click', () => {
 
 renameForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    let searchID = document.querySelector('.project-name-heading').textContent.replace(/\W/g, '');
+    let searchID = document.querySelector('.project-name-heading').textContent.replace(/\W/g, '').replaceAll(' ', '');
     const projectListItem = document.querySelector(`.${searchID}`);
     // call function to set the name of the project to new value
-    const newProjectName = document.getElementById('submit-rename-form').value.replace(/\W/g, '')
+    const newProjectName = document.getElementById('submit-rename-form').value.replace(/\W/g, '').replaceAll(' ', '');
     projectListItem.textContent = newProjectName;
     // update the class of the original item
     projectListItem.classList.remove(searchID);
     projectListItem.classList.add(newProjectName);
     document.querySelector('.project-name-heading').textContent = newProjectName;
+    document.querySelector('.project-name-heading').setAttribute('id', newProjectName);
     renameForm.reset();
     renameProject.close();
 });
@@ -156,15 +158,14 @@ closeNewItem.addEventListener('click', () => {
 addTodoForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('item-name').value;
-    console.log(name);
     const description = document.getElementById('item-description').value;
-    console.log(description);
     const deadline = document.getElementById('item-deadline').value;
-    console.log(deadline);
     const priority = document.querySelector('#priority:checked').value
-    console.log(priority);
     const notes = document.getElementById('item-notes').value;
-    console.log(notes);
     addTodoForm.reset();
     itemModal.close();
+    // create new todo item
+    const newItem = new Item(name, description, deadline, priority, notes);
+    // get current project and push new item
+    
 });
