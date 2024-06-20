@@ -24,7 +24,9 @@
                 </div>
                 <button class="add-todo-item">➕ New todo item</button>
             </div>
-            <div class="item-section"></div>
+            <div class="item-section">
+
+            </div>
         </div>
     </div>
 
@@ -44,6 +46,41 @@
             <input id="submit-rename-form" type="text" required>
             <input type="submit">
             <input id="close-rename" type="button" value="Close">
+        </form>
+    </dialog>
+
+    <!-- modal for adding a new todo item -->
+    <dialog class="todo-dialog" method="dialog">
+        <form id="new-todo-form">
+            <div>
+                <label for="">Item name:
+                    <input type="text" required>
+                </label>
+            </div>
+            <div>
+                <label for="">Description
+                    <input type="text" required>
+                </label>
+            </div>
+            <div>
+                <label for="">Deadline
+                    <input type="date" required>
+                </label>
+            </div>
+            <div>
+                <label for="priority">Low priority<input name="priority" type="radio" required value="low"></label>
+                <label for="priority">Moderate priority<input name="priority" type="radio" required value="moderate"></label>
+                <label for="priority">High priority<input name="priority" type="radio" required value="high"></label>
+            </div>
+            <div>
+                <label for="">Notes
+                    <input type="text">
+                </label>
+            </div>
+            <div class="submit-close-div">
+                <input type="submit" id="submit-add-item">
+                <input type="button" value="Close" id="close-add-item">
+            </div>
         </form>
     </dialog>
 </body>
