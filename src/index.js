@@ -10,13 +10,13 @@ projectHeader.classList.add('project-name-heading');
 editIconDiv.appendChild(projectHeader);
 const myProjects = [];
 let currentProject = 0;
+let numProjects = 0;
 // this variable keeps track of which project we are viewing so that our program knows which project in our array to modify
 // say we are editing the name of a project for example
 
 const projectNameHeading = document.querySelector('.project-name-heading')
 function loadProjectName(projectName) {
     projectNameHeading.textContent = projectName;
-    projectNameHeading.setAttribute('id', projectName.replace(/\W/g, '').replaceAll(' ', ''));
 }
 
 class Project {
@@ -85,6 +85,7 @@ function addProjectToScreen(projectName) {
     const projectList = document.querySelector('.projects-list');
     const entry = document.createElement('li');
     entry.textContent = projectName;
+    entry.setAttribute('id', `${numProjects}`);
     entry.classList.add(projectName.replace(/\W/g, '').replaceAll(' ', '')); // for reference later on when we change the project name
     projectList.appendChild(entry);
     entry.addEventListener('click', () => {
@@ -100,6 +101,7 @@ newProjectForm.addEventListener('submit', (e) => {
     projectModal.close();
     let proj = new Project(newProjectName);
     myProjects.push(proj);
+    numProjects++;
     addProjectToScreen(newProjectName);
 });
 
@@ -135,7 +137,6 @@ renameForm.addEventListener('submit', (e) => {
     projectListItem.classList.remove(searchID);
     projectListItem.classList.add(newProjectName);
     document.querySelector('.project-name-heading').textContent = newProjectName;
-    document.querySelector('.project-name-heading').setAttribute('id', newProjectName);
     renameForm.reset();
     renameProject.close();
 });
@@ -167,5 +168,4 @@ addTodoForm.addEventListener('submit', (e) => {
     // create new todo item
     const newItem = new Item(name, description, deadline, priority, notes);
     // get current project and push new item
-    
 });
