@@ -21,9 +21,13 @@ function loadProjectName(projectName) {
 class Project {
     constructor(name) {
         this.name = name;
+        this.todoitems = [];
     }
     set projectName(newName) {
         this.name = newName;
+    }
+    addTodoItem(item) {
+        this.todoitems.push(item);
     }
 }
 
@@ -132,4 +136,35 @@ renameForm.addEventListener('submit', (e) => {
     document.querySelector('.project-name-heading').textContent = newProjectName;
     renameForm.reset();
     renameProject.close();
+});
+
+// show modal for adding an item
+const itemModal = document.querySelector('.todo-dialog');
+const addTodo = document.querySelector('.add-todo-item');
+const addTodoForm = document.getElementById('new-todo-form');
+addTodo.addEventListener('click', () => {
+    itemModal.showModal();
+});
+
+// event listeners for closing the add item modal
+const closeNewItem = document.getElementById('close-add-item');
+closeNewItem.addEventListener('click', () => {
+    addTodoForm.reset();
+    itemModal.close();
+});
+
+addTodoForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('item-name').value;
+    console.log(name);
+    const description = document.getElementById('item-description').value;
+    console.log(description);
+    const deadline = document.getElementById('item-deadline').value;
+    console.log(deadline);
+    const priority = document.querySelector('#priority:checked').value
+    console.log(priority);
+    const notes = document.getElementById('item-notes').value;
+    console.log(notes);
+    addTodoForm.reset();
+    itemModal.close();
 });

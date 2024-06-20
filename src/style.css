@@ -10,6 +10,8 @@ html, body {
 body {
     margin: 0;
     font-family: fira-code;
+    overflow: auto;
+    box-sizing: border-box;
 }
 
 .main {
@@ -19,6 +21,7 @@ body {
 }
 
 .main-right {
+    box-sizing: border-box;
     height: 100%;
     padding: 2%;
 }
