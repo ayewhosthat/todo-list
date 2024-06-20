@@ -1,4 +1,5 @@
 import './style.css';
+import format from "date-fns";
 import Icon from './pencil.svg';
 const editIconDiv = document.querySelector('.name-and-icon');
 const icon = new Image();
@@ -90,8 +91,8 @@ function addProjectToScreen(projectName) {
     projectList.appendChild(entry);
     entry.addEventListener('click', () => {
         loadProjectName(projectName);
-        currentProject = Number.parseInt(entry.getAttribute('id'));
-        console.log(currentProject);
+        let curr = Number.parseInt(entry.getAttribute('id'));
+        currentProject = curr;
     });
 };
 
@@ -158,16 +159,33 @@ closeNewItem.addEventListener('click', () => {
     itemModal.close();
 });
 
+function addCardToScreen(item) {
+    // create the card to display on the screen
+    const card = document.createElement('div');
+    const title = document.createElement('h2');
+    title.textContent = item.title;
+    const dueDate = document.createElement('p')
+    dueDate.textContent = item.deadline;
+    card.appendChild(title);
+    card.appendChild(dueDate);
+    document.querySelector('.item-section').appendChild(card);
+}
+
 addTodoForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('item-name').value;
     const description = document.getElementById('item-description').value;
     const deadline = document.getElementById('item-deadline').value;
+    console.log(deadline);
+    console.log(typeof deadline);
     const priority = document.querySelector('#priority:checked').value
     const notes = document.getElementById('item-notes').value;
     addTodoForm.reset();
     itemModal.close();
     // create new todo item
-    const newItem = new Item(name, description, deadline, priority, notes);
+    const newItem = new Item(name, description, priority, deadline, notes);
     // get current project and push new item
+    const current = myProjects.at(currentProject);
+    current.addTodoItem(newItem);
+    addCardToScreen(newItem);
 });
