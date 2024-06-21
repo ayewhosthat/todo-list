@@ -83,5 +83,40 @@
             </div>
         </form>
     </dialog>
+
+    <!-- here we create an additional form for when we edit an item -->
+    <dialog class="edit-todo-dialog" method="dialog">
+        <form id="edit-todo-form">
+            <div>
+                <label for="edit-item-name">Item name:
+                    <input type="text" id="edit-item-name" maxlength="15" required>
+                </label>
+            </div>
+            <div>
+                <label for="edit-item-description">Description
+                    <input type="text" id="edit-item-description" required>
+                </label>
+            </div>
+            <div>
+                <label for="edit-item-deadline">Deadline
+                    <input type="date" id="edit-item-deadline" required>
+                </label>
+            </div>
+            <div>
+                <label for="priority">Low priority<input name="edit-item-deadline" id="edit-priority" type="radio" value="low" required></label>
+                <label for="priority">Moderate priority<input name="edit-priority" id="edit-priority" type="radio" value="moderate" required></label>
+                <label for="priority">High priority<input name="edit-priority" id="edit-priority" type="radio" value="high" required></label>
+            </div>
+            <div>
+                <label for="edit-item-notes">Notes
+                    <input id="edit-item-notes" type="text">
+                </label>
+            </div>
+            <div class="submit-close-div-edit">
+                <input type="submit" id="submit-edit-item">
+                <input type="button" value="Close" id="close-edit-item">
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>
