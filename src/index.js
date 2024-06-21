@@ -173,7 +173,12 @@ closeNewItem.addEventListener('click', () => {
 
 const editItemModal = document.querySelector('.edit-todo-dialog');
 const editItemForm = document.getElementById('edit-todo-form');
-const closeEditItem = document.getElementById('close-edit-item')
+const closeEditItem = document.getElementById('close-edit-item');
+
+closeEditItem.addEventListener('click', () => {
+    editItemForm.reset();
+    editItemModal.close();
+});
 
 function addCardToScreen(item) {
     // create the card to display on the screen
@@ -212,7 +217,7 @@ function addCardToScreen(item) {
         card.remove(); // delete item from DOM
     });
     editIcon.addEventListener('click', () => {
-
+        editItemModal.showModal();
     });
 }
 
@@ -230,6 +235,5 @@ addTodoForm.addEventListener('submit', (e) => {
     // get current project and push new item
     const current = myProjects[currentProject];
     current.addTodoItem(newItem);
-    console.log(current);
     addCardToScreen(newItem);
 });
