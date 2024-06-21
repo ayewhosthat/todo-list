@@ -1,6 +1,6 @@
 import './style.css';
-import format from "date-fns";
 import Icon from './pencil.svg';
+import Delete from './delete-empty-outline.svg';
 const editIconDiv = document.querySelector('.name-and-icon');
 const icon = new Image();
 icon.classList.add('edit-icon')
@@ -169,16 +169,25 @@ function addCardToScreen(item) {
     // create the card to display on the screen
     const card = document.createElement('div');
     card.classList.add('item-card')
-    const title = document.createElement('h2');
+    const title = document.createElement('h2'); 
     title.textContent = item.title;
     const dueDate = document.createElement('p');
     dueDate.textContent = `Deadline: ${item.deadline}`;
     const priority = document.createElement('p');
     priority.textContent = `Priority: ${item.priority}`;
     priority.setAttribute('id', `${item.priority}`);
+    const buttonDiv = document.createElement('div');
+    buttonDiv.setAttribute('id', 'edit-delete');
+    const deleteIcon = new Image();
+    deleteIcon.src = Delete;
+    const editIcon = new Image();
+    editIcon.src = Icon;
+    buttonDiv.appendChild(deleteIcon);
+    buttonDiv.appendChild(editIcon);
     card.appendChild(title);
     card.appendChild(dueDate);
     card.appendChild(priority);
+    card.appendChild(buttonDiv);
     document.querySelector('.item-section').appendChild(card);
 }
 
