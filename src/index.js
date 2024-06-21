@@ -179,8 +179,11 @@ function addCardToScreen(item) {
     const buttonDiv = document.createElement('div');
     buttonDiv.setAttribute('id', 'edit-delete');
     const deleteIcon = new Image();
+    deleteIcon.setAttribute('id', 'delete-item');
     deleteIcon.src = Delete;
     const editIcon = new Image();
+    editIcon.setAttribute('id', 'edit-item');
+    // id's are for styling
     editIcon.src = Icon;
     buttonDiv.appendChild(deleteIcon);
     buttonDiv.appendChild(editIcon);
