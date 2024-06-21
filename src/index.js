@@ -171,6 +171,10 @@ closeNewItem.addEventListener('click', () => {
     itemModal.close();
 });
 
+const editItemModal = document.querySelector('.edit-todo-dialog');
+const editItemForm = document.getElementById('edit-todo-form');
+const closeEditItem = document.getElementById('close-edit-item')
+
 function addCardToScreen(item) {
     // create the card to display on the screen
     const card = document.createElement('div');
@@ -206,6 +210,9 @@ function addCardToScreen(item) {
         const index = card.dataset.index - 1;
         projectCurr.removeTodoItem(index);
         card.remove(); // delete item from DOM
+    });
+    editIcon.addEventListener('click', () => {
+
     });
 }
 
