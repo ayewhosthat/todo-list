@@ -24,12 +24,18 @@ class Project {
     constructor(name) {
         this.name = name;
         this.todoitems = [];
+        this.numItems = 0;
     }
     set projectName(newName) {
         this.name = newName;
     }
     addTodoItem(item) {
         this.todoitems.push(item);
+        this.numItems++;
+    }
+    removeTodoItem(index) {
+        this.todoitems.splice(index,1);
+        this.numItems--;
     }
 }
 
@@ -169,6 +175,9 @@ function addCardToScreen(item) {
     // create the card to display on the screen
     const card = document.createElement('div');
     card.classList.add('item-card')
+    const projectCurr = myProjects[currentProject];
+    // using data attributes for easy access afterwards
+    card.setAttribute('data-index', `${projectCurr.numItems}`);
     const title = document.createElement('h2'); 
     title.textContent = item.title;
     const dueDate = document.createElement('p');
@@ -192,6 +201,12 @@ function addCardToScreen(item) {
     card.appendChild(priority);
     card.appendChild(buttonDiv);
     document.querySelector('.item-section').appendChild(card);
+    // event listener for delete
+    deleteIcon.addEventListener('click', () => {
+        const index = card.dataset.index - 1;
+        projectCurr.removeTodoItem(index);
+        card.remove(); // delete item from DOM
+    });
 }
 
 addTodoForm.addEventListener('submit', (e) => {
@@ -208,5 +223,6 @@ addTodoForm.addEventListener('submit', (e) => {
     // get current project and push new item
     const current = myProjects[currentProject];
     current.addTodoItem(newItem);
+    console.log(current);
     addCardToScreen(newItem);
 });
