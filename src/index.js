@@ -179,6 +179,7 @@ closeEditItem.addEventListener('click', () => {
     editItemForm.reset();
     editItemModal.close();
 });
+// event listener for when we submit the edit form
 
 function addCardToScreen(item) {
     // create the card to display on the screen
@@ -217,6 +218,13 @@ function addCardToScreen(item) {
         card.remove(); // delete item from DOM
     });
     editIcon.addEventListener('click', () => {
+        // set the values of the fields to what they were before
+        document.getElementById('edit-item-name').setAttribute('value', item.title);
+        document.getElementById('edit-item-description').setAttribute('value', item.description);
+        document.getElementById('edit-item-deadline').setAttribute('value', item.deadline);
+        const radio = document.querySelector(`#edit-priority[value="${item.priority}"]`);
+        radio.setAttribute('checked', true);
+        document.getElementById('edit-item-notes').setAttribute('value', item.notes);
         editItemModal.showModal();
     });
 }
@@ -237,3 +245,5 @@ addTodoForm.addEventListener('submit', (e) => {
     current.addTodoItem(newItem);
     addCardToScreen(newItem);
 });
+
+// insert function here to edit a card
