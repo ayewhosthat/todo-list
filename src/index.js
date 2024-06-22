@@ -198,10 +198,16 @@ editItemForm.addEventListener('submit', (e) => {
     editItemModal.close();
     const cardIndex = currentCard + 1;
     const itemCard = document.querySelector(`[data-index="${cardIndex}"]`);
+    editCard(itemCard, item);
 });
 
-function editCard(card) {
-
+function editCard(card, item) {
+    const title = card.querySelector('#item-title');
+    const deadline = card.querySelector('#item-duedate');
+    const priority = card.querySelector('.priority');
+    title.textContent = item.title;
+    deadline.textContent = item.deadline;
+    priority.textContent = item.priority;
 }
 
 function addCardToScreen(item) {
@@ -211,12 +217,15 @@ function addCardToScreen(item) {
     const projectCurr = myProjects[currentProject];
     // using data attributes for easy access afterwards
     card.setAttribute('data-index', `${projectCurr.numItems}`);
-    const title = document.createElement('h2'); 
+    const title = document.createElement('h2');
+    title.setAttribute('id', 'item-title'); 
     title.textContent = item.title;
     const dueDate = document.createElement('p');
+    dueDate.setAttribute('id', 'item-duedate');
     dueDate.textContent = `Deadline: ${item.deadline}`;
     const priority = document.createElement('p');
     priority.textContent = `Priority: ${item.priority}`;
+    priority.classList.add('priority');
     priority.setAttribute('id', `${item.priority}`);
     const buttonDiv = document.createElement('div');
     buttonDiv.setAttribute('id', 'edit-delete');
