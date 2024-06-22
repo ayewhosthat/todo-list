@@ -184,8 +184,21 @@ closeEditItem.addEventListener('click', () => {
 editItemForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const itemcard = myProjects[currentProject].todoitems[currentCard];
-    console.log(itemcard);
+    const newName = document.getElementById('edit-item-name').value;
+    console.log(newName);
+    const newDesc = document.getElementById('edit-item-description').value;
+    console.log(newDesc);
+    const newDeadline = document.getElementById('edit-item-deadline').value;
+    console.log(newDeadline);
+    const newPriority = document.querySelector('#edit-priority:checked').value;
+    console.log(newPriority);
+    const newNotes = document.getElementById('edit-item-notes').value;
+    console.log(newNotes);
 });
+
+// function editCard(card) {
+
+// }
 
 function addCardToScreen(item) {
     // create the card to display on the screen
@@ -232,7 +245,7 @@ function addCardToScreen(item) {
         document.getElementById('edit-item-description').setAttribute('value', item.description);
         document.getElementById('edit-item-deadline').setAttribute('value', item.deadline);
         const radio = document.querySelector(`#edit-priority[value="${item.priority}"]`);
-        radio.setAttribute('checked', true);
+        radio.checked = true;
         document.getElementById('edit-item-notes').setAttribute('value', item.notes);
         editItemModal.showModal();
     });
