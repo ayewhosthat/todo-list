@@ -12,6 +12,7 @@ editIconDiv.appendChild(projectHeader);
 const myProjects = [];
 let currentProject = 0;
 let numProjects = 0;
+let currentCard = 0;
 // this variable keeps track of which project we are viewing so that our program knows which project in our array to modify
 // say we are editing the name of a project for example
 
@@ -180,6 +181,11 @@ closeEditItem.addEventListener('click', () => {
     editItemModal.close();
 });
 // event listener for when we submit the edit form
+editItemForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const itemcard = myProjects[currentProject].todoitems[currentCard];
+    console.log(itemcard);
+});
 
 function addCardToScreen(item) {
     // create the card to display on the screen
@@ -218,6 +224,9 @@ function addCardToScreen(item) {
         card.remove(); // delete item from DOM
     });
     editIcon.addEventListener('click', () => {
+        currentCard = card.dataset.index - 1;
+        // reset the form
+        editItemForm.reset();
         // set the values of the fields to what they were before
         document.getElementById('edit-item-name').setAttribute('value', item.title);
         document.getElementById('edit-item-description').setAttribute('value', item.description);
