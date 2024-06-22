@@ -183,22 +183,26 @@ closeEditItem.addEventListener('click', () => {
 // event listener for when we submit the edit form
 editItemForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const itemcard = myProjects[currentProject].todoitems[currentCard];
+    const item = myProjects[currentProject].todoitems[currentCard];
     const newName = document.getElementById('edit-item-name').value;
-    console.log(newName);
     const newDesc = document.getElementById('edit-item-description').value;
-    console.log(newDesc);
     const newDeadline = document.getElementById('edit-item-deadline').value;
-    console.log(newDeadline);
     const newPriority = document.querySelector('#edit-priority:checked').value;
-    console.log(newPriority);
     const newNotes = document.getElementById('edit-item-notes').value;
-    console.log(newNotes);
+    // update item properties
+    item.itemTitle = newName;
+    item.itemDescription = newDesc;
+    item.itemDeadline = newDeadline;
+    item.itemPriority = newPriority;
+    item.itemNotes = newNotes;
+    editItemModal.close();
+    const cardIndex = currentCard + 1;
+    const itemCard = document.querySelector(`[data-index="${cardIndex}"]`);
 });
 
-// function editCard(card) {
+function editCard(card) {
 
-// }
+}
 
 function addCardToScreen(item) {
     // create the card to display on the screen
